@@ -6,6 +6,10 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
+  def top
+    @restaurants = Restaurant.where(rating: 5)
+  end
+
   # GET /restaurants/1
   def show
   end
@@ -46,13 +50,13 @@ class RestaurantsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_restaurant
-      @restaurant = Restaurant.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :rating)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :address, :rating)
+  end
 end
